@@ -1,8 +1,8 @@
 [package]
 name = "c2rs"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
-description = "C Struct to Rust struct"
+description = "C struct to Rust struct"
 license = "MIT"
 repository = "https://github.com/editso/c2rs"
 keywords = ["macro", 'c', "converter"]
