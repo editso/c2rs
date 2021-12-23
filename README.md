@@ -14,7 +14,7 @@ This is a macro that converts the `struct` of the `c` language into a `rust stru
 // Cargo.toml
 
 [dependencies]
-c2rs = "0.1.0"
+c2rs = "0.1.1"
 
 ```
 
