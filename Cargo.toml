@@ -2,6 +2,7 @@
 name = "c2rs"
 version = "0.1.0"
 edition = "2021"
+description = "C Struct to Rust struct"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
