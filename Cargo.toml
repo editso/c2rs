@@ -1,6 +1,6 @@
 [package]
 name = "c2rs"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "C Struct to Rust struct"
 license = "MIT"
