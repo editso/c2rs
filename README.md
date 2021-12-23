@@ -1,7 +1,7 @@
 # c2rs 
-这是一个将`c`语言的`struct`转换为`rust struct`宏
+This is a macro that converts the `struct` of the `c` language into a `rust struct`
 
-# 例子
+# example
 ```
 c2rs_def!(
     struct A{
