@@ -232,12 +232,11 @@ impl Parse for Field {
     }
 }
 
-
-/// C struct to Rust struct 
+/// C struct to Rust struct
 /// #Example
 /// ```
 /// use c2rs::c2rs_def;
-/// 
+///
 /// type DWORD = u32;
 /// const SIZE: usize = 10;
 /// c2rs_def!(
@@ -251,8 +250,10 @@ impl Parse for Field {
 ///         
 ///         struct {
 ///             u8 var7;
+///             u8 *ptr;
+///             u8 **ptr;
 ///         }var6;
-/// 
+///
 ///         DWORD array[SIZE];
 ///     };
 ///     
@@ -262,9 +263,9 @@ impl Parse for Field {
 ///     
 ///     // ....
 /// );
-/// 
+///
 /// let mut buffer = [1u8; 1024];
-/// 
+///
 /// unsafe{
 ///     let mut buf = A::from_mut_bytes(buffer.as_mut_ptr());
 ///     let buf = buf.as_mut().unwrap();
@@ -274,11 +275,10 @@ impl Parse for Field {
 ///     assert_eq!(10, buffer[0]);
 ///     
 ///     let mut b = B::from_mut_bytes(buffer.as_mut_ptr()).as_mut().unwrap();
-///     
 ///     assert_eq!(10, b.var1);
-/// 
+///
 /// }
-/// 
+///
 /// ```
 #[proc_macro]
 pub fn c2rs_def(input: TokenStream) -> TokenStream {
@@ -438,6 +438,26 @@ pub fn c2rs_def(input: TokenStream) -> TokenStream {
 
     let gen = quote! {
         #(#rs_structs)*
+    };
+
+    gen.into()
+}
+
+/// c str
+/// ```
+/// use c2rs::c_str;
+///
+/// println!("{}", c_str!("hello world"));
+/// ```
+#[proc_macro]
+pub fn c_str(input: TokenStream) -> TokenStream {
+    let s: syn::LitStr = syn::parse(input).expect("expect str");
+
+    let mut s = s.value();
+    s.push('\0');
+
+    let gen = quote! {
+        #s
     };
 
     gen.into()
